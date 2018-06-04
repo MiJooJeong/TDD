@@ -66,7 +66,7 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
 
         # 페이지는 다시 갱신되고, 두 개 아이템이 목록에 보인다.
-        self.check_for_row_in_list_table('2: 공작깃털을 이용해서 그물만들기')
+        self.check_for_row_in_list_table('2: 공작깃털을 이용해서 그물 만들기')
         self.check_for_row_in_list_table('1: 공작깃털 사기')
 
         # 에디스는 사이트가 입력한 목록을 저장하고 있는지 궁금하다.
