@@ -3,8 +3,8 @@ from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.test import TestCase
 
-from .models import Item, List
-from .views import home_page
+from ..models import Item, List
+from ..views import home_page
 
 
 # Create your tests here.
@@ -125,5 +125,3 @@ class NewItemList(TestCase):
         )
 
         self.assertRedirects(response, '/lists/%d/' % (correct_list.id,))
-
-
