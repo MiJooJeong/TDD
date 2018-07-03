@@ -40,7 +40,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 # DEBUG = False 로 설정한 경우 필요
-ALLOWED_HOSTS = get_secret("ALLOWED_HOST")
+ALLOWED_HOSTS = get_secret("ALLOWED_HOSTS")
 
 # Application definition
 
