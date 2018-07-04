@@ -2,6 +2,7 @@ from django.core.urlresolvers import resolve
 from django.http import HttpRequest
 from django.template.loader import render_to_string
 from django.test import TestCase
+from django.utils.html import escape
 
 from ..models import Item, List
 from ..views import home_page
@@ -69,6 +70,18 @@ class NewListTest(TestCase):
         )
         new_list = List.objects.first()
         self.assertRedirects(response, '/lists/%d/' % (new_list.id,))
+
+    def test_validation_errors_are_sent_back_to_home_page_template(self):
+        response = self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'home.html')
+        expected_error = escape("빈 아이템을 등록할 수 없습니다.")
+        self.assertContains(response, expected_error)
+
+    def test_invalid_list_items_arent_sent_back_to_home_page_template(self):
+        self.client.post('/lists/new', data={'item_text': ''})
+        self.assertEqual(List.objects.count(), 0)
+        self.assertEqual(Item.objects.count(), 0)
 
 
 class NewItemList(TestCase):

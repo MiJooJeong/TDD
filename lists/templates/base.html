@@ -21,6 +21,11 @@
                            placeholder="작업 아이템 입력"
                     />
                     {% csrf_token %}
+                    {% if error %}
+                        <div class="form-group has-error">
+                            <span class="help-block">빈 아이템을 등록할 수 없습니다.</span>
+                        </div>
+                    {% endif %}
                 </form>
             </div>
         </div>
