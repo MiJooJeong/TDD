@@ -43,5 +43,6 @@ class ItemValidationTest(FunctionalTest):
         # 도움이 되는 에러 메시지를 본다.
         self.check_for_row_in_list_table('1: 콜라 사기')
         error = self.browser.find_element_by_css_selector('.has-error')
-        self.assertEqual(error.text, "이미 등록한 작업입니다.")
+        # self.assertEqual(error.text, "이미 등록한 작업입니다.")
+        self.assertEqual(error.text, "이미 리스트에 해당 아이템이 있습니다.")
 
