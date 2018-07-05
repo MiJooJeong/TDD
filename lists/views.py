@@ -1,13 +1,15 @@
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+
 from .models import Item, List
+from .forms import ItemForm
 
 
 # Create your views here.
 
 def home_page(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'form': ItemForm()})
 
 
 def view_list(request, list_id):
@@ -37,7 +39,6 @@ def new_list(request):
         error = "빈 아이템을 등록할 수 없습니다."
         return render(request, 'home.html', {"error": error})
     return redirect(list_)
-
 
 # def add_item(request, list_id):
 #     list_ = List.objects.get(id=list_id)
